@@ -97,14 +97,14 @@ public class DeviceService {
         }
     }
 
-    public Device startMaintenance(long id) {
-        Device found = this.findById(id);
-        if (Objects.equals(found.getStatus(), "Dismissed")) throw new BadRequestException("Device ID '" + id + "' is dismissed.");
-        else if (Objects.equals(found.getStatus(), "Maintenance")) throw new BadRequestException("Device ID '" + id + "' is already being maintained.");
+    public Device startMaintenance(UUID deviceId) {
+        Device found = this.getDeviceById(deviceId);
+        if (Objects.equals(found.getState(), "Dismissed")) throw new BadRequestException("Device ID '" + id + "' is dismissed.");
+        else if (Objects.equals(found.getState(), "Maintenance")) throw new BadRequestException("Device ID '" + id + "' is already being maintained.");
         else {
-            found.setStatus("Maintenance");
-            found.setEmployee(null);
-            return dd.save(found);
+            found.setState("Maintenance");
+            found.setUser(null);
+            return deviceDAO.save(found);
         }
     }
 }

@@ -54,7 +54,7 @@ public class DeviceController {
         }
         return deviceService.updateDevice(deviceId,body);
     }
-    
+
 
     @DeleteMapping("/{deviceId}") // DELETE 1
     @ResponseStatus(HttpStatus.NO_CONTENT)
