@@ -99,8 +99,8 @@ public class DeviceService {
 
     public Device startMaintenance(UUID deviceId) {
         Device found = this.getDeviceById(deviceId);
-        if (Objects.equals(found.getState(), "Dismissed")) throw new BadRequestException("Device ID '" + id + "' is dismissed.");
-        else if (Objects.equals(found.getState(), "Maintenance")) throw new BadRequestException("Device ID '" + id + "' is already being maintained.");
+        if (Objects.equals(found.getState(), "Dismissed")) throw new BadRequestException("Device ID '" + deviceId + "' is dismissed.");
+        else if (Objects.equals(found.getState(), "Maintenance")) throw new BadRequestException("Device ID '" + deviceId + "' is already being maintained.");
         else {
             found.setState("Maintenance");
             found.setUser(null);
